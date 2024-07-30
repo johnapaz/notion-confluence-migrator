@@ -7,6 +7,11 @@ A Python application for migrating content from Notion to Confluence Cloud with 
 - [Requirements](#requirements)
 - [Directory Structure](#directory-structure)
 - [Installation](#installation)
+- [Environment Variables](#environment-variables)
+- [Requirements](#requirements)
+- [Prerequisites](#prerequisites)
+    - [Creating a Notion integration](#creating-a-notion-integration)
+    - [Creating a Confluence Forge app](#creating-a-confluence-app)
 - [Usage](#usage)
 - [Contributing](#contributing)
 - [License](#license)
@@ -54,7 +59,7 @@ In order to use this app you'll need to have already:
         ```
     - Add `http://localhost:8000/callback` as the Redirect URI.
     - Save the changes.
-    
+
     4. Get Your Client ID and Client Secret: Go to the Credentials tab. Copy the `Client ID` and `Client Secret`. These will be used in the `.env` file.
 
 ## Directory Structure
@@ -108,7 +113,7 @@ notion-confluence/
 
 5. Edit the .env file and replace the placeholder values with your actual credentials.
 
-### Environment Variables
+## Environment Variables
 The application uses environment variables to store sensitive information. These variables are loaded from a .env file located in the project root.
 
 Example .env file:
