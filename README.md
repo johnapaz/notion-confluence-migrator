@@ -1,3 +1,11 @@
+[![johnapaz/notion-confluence-migrator](https://img.shields.io/badge/johnapaz-notion--confluence--migrator-darkgray?style=flat&logo=github&logoColor=white&color=black)](https://github.com/johnapaz/notion-confluence-migrator)<!-- [![Latest release](https://img.shields.io/github/v/release/johnapaz/notion-confluence-migrator?label=Latest%20release&style=social)](https://github.com/johnapaz/notion-confluence-migrator/releases/tag/v0.1.0) -->
+[![Stars](https://img.shields.io/github/stars/johnapaz/notion-confluence-migrator?style=social&logo=data:image/svg%2bxml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGlkPSJGaWxsZWQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiPjxwYXRoIGQ9Ik0xLjMyNywxMi40LDQuODg3LDE1LDMuNTM1LDE5LjE4N0EzLjE3OCwzLjE3OCwwLDAsMCw0LjcxOSwyMi44YTMuMTc3LDMuMTc3LDAsMCwwLDMuOC0uMDE5TDEyLDIwLjIxOWwzLjQ4MiwyLjU1OWEzLjIyNywzLjIyNywwLDAsMCw0Ljk4My0zLjU5MUwxOS4xMTMsMTVsMy41Ni0yLjZhMy4yMjcsMy4yMjcsMCwwLDAtMS45LTUuODMySDE2LjRMMTUuMDczLDIuNDMyYTMuMjI3LDMuMjI3LDAsMCwwLTYuMTQ2LDBMNy42LDYuNTY4SDMuMjMxYTMuMjI3LDMuMjI3LDAsMCwwLTEuOSw1LjgzMloiLz48L3N2Zz4K)](https://github.com/johnapaz/notion-confluence-migrator/stargazers)
+[![Fork](https://img.shields.io/github/forks/johnapaz/notion-confluence-migrator?style=social)](https://github.com/johnapaz/notion-confluence-migrator/forks)
+[![GitHub commits](https://img.shields.io/github/commit-activity/t/johnapaz/notion-confluence-migrator?style=social&logo=github)](https://github.com/johnapaz/notion-confluence-migrator/commits)
+[![Pull requests](https://img.shields.io/github/issues-pr/johnapaz/notion-confluence-migrator?style=social&logo=github)](https://github.com/johnapaz/notion-confluence-migrator/pulls)
+
+[![hackmd-github-sync-badge](https://hackmd.io/XOuTtIuuRBeg_K8TtJt7_A/badge)](https://hackmd.io/XOuTtIuuRBeg_K8TtJt7_A)
+
 # Notion to Confluence Migration Tool
 
 A Python application for migrating content from Notion to Confluence Cloud with a user-friendly graphical interface.
