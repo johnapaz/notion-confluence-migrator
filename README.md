@@ -4,8 +4,6 @@
 [![GitHub commits](https://img.shields.io/github/commit-activity/t/johnapaz/notion-confluence-migrator?style=social&logo=github)](https://github.com/johnapaz/notion-confluence-migrator/commits)
 [![Pull requests](https://img.shields.io/github/issues-pr/johnapaz/notion-confluence-migrator?style=social&logo=github)](https://github.com/johnapaz/notion-confluence-migrator/pulls)
 
-[![hackmd-github-sync-badge](https://hackmd.io/XOuTtIuuRBeg_K8TtJt7_A/badge)](https://hackmd.io/XOuTtIuuRBeg_K8TtJt7_A)
-
 # Notion to Confluence Migration Tool
 
 A Python application for migrating content from Notion to Confluence Cloud with a user-friendly graphical interface.
