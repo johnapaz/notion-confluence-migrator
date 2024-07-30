@@ -25,31 +25,31 @@ A Python application for migrating content from Notion to Confluence Cloud with 
 - `python-dotenv` for handling environment variables
 
 ## Directory Structure
-    ```plaintext
-    notion-confluence/
-    ├── .gitignore
-    ├── .env.example
-    ├── README.md
-    ├── app.py
-    ├── callback_server.py
-    ├── dependency_checker.py
-    ├── requirements.txt
-    ├── setup.py
-    ├── src/
-    │   ├── __init__.py
-    │   ├── gui/
-    │   │   ├── __init__.py
-    │   │   ├── main_screen.py
-    │   │   ├── url_screen.py
-    │   │   ├── login_screen.py
-    │   │   ├── content_selection_screen.py
-    │   │   ├── destination_login_screen.py
-    │   │   ├── site_selection_screen.py
-    │   │   ├── space_selection_screen.py
-    │   │   ├── confirmation_screen.py
-    │   │   ├── progress_screen.py
-    │   │   ├── custom_dialog.py
-    ```
+```
+notion-confluence/
+├── .gitignore
+├── .env.example
+├── README.md
+├── app.py
+├── callback_server.py
+├── dependency_checker.py
+├── requirements.txt
+├── setup.py
+├── src/
+│   ├── __init__.py
+│   ├── gui/
+│   │   ├── __init__.py
+│   │   ├── main_screen.py
+│   │   ├── url_screen.py
+│   │   ├── login_screen.py
+│   │   ├── content_selection_screen.py
+│   │   ├── destination_login_screen.py
+│   │   ├── site_selection_screen.py
+│   │   ├── space_selection_screen.py
+│   │   ├── confirmation_screen.py
+│   │   ├── progress_screen.py
+│   │   ├── custom_dialog.py
+```
 
 ## Installation
 1. Clone the repository:
@@ -79,14 +79,14 @@ A Python application for migrating content from Notion to Confluence Cloud with 
 The application uses environment variables to store sensitive information. These variables are loaded from a .env file located in the project root.
 
 Example .env file:
-    ```plaintext
-    CLIENT_ID=your_client_id_here
-    CLIENT_SECRET=your_client_secret_here
-    REDIRECT_URI=http://localhost:8000/callback
-    AUTH_URL=https://auth.atlassian.com/authorize
-    TOKEN_URL=https://auth.atlassian.com/oauth/token
-    SCOPES=read:me write:confluence-space read:confluence-content.permission write:confluence-props read:confluence-props search:confluence read:confluence-space.summary write:confluence-content read:confluence-content
-    ```
+```
+CLIENT_ID=your_client_id_here
+CLIENT_SECRET=your_client_secret_here
+REDIRECT_URI=http://localhost:8000/callback
+AUTH_URL=https://auth.atlassian.com/authorize
+TOKEN_URL=https://auth.atlassian.com/oauth/token
+SCOPES=read:me write:confluence-space read:confluence-content.permission write:confluence-props read:confluence-props search:confluence read:confluence-space.summary write:confluence-content read:confluence-content
+```
 
 ## Usage
 1. Launch the application:
