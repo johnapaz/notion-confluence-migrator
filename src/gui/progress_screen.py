@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 from src.migration import migrate_content
-from src.api import NotionAPI, ConfluenceAPI
+from src.api.api import NotionAPI, ConfluenceAPI
 
 class ProgressScreen:
     def __init__(self, root, source, url, username, token, selected_content, dest_username, dest_token, selected_space):

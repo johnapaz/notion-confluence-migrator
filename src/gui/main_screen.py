@@ -1,26 +1,38 @@
-import tkinter as tk
-from tkinter import ttk
-from src.gui.url_screen import URLScreen
+import customtkinter as ctk
+from tkinter import messagebox
+from src.gui.site_selection_screen import SiteSelectionScreen
 
-class MainScreen:
-    def __init__(self, root):
-        self.root = root
-        self.root.title("Notion to Confluence Migration")
-        self.root.geometry("600x400")
-        self.create_main_screen()
+class MainScreen(ctk.CTk):
+    def __init__(self):
+        super().__init__()
 
-    def create_main_screen(self):
-        frame = ttk.Frame(self.root, padding="10")
-        frame.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
+        self.title("Notion-Confluence Integration")
+        self.geometry("400x300")
 
-        self.source_var = tk.StringVar()
-        ttk.Label(frame, text="Select Source:").grid(row=0, column=0, sticky=tk.W)
-        ttk.Radiobutton(frame, text="Notion", variable=self.source_var, value="Notion").grid(row=1, column=0, sticky=tk.W)
-        ttk.Radiobutton(frame, text="Confluence", variable=self.source_var, value="Confluence").grid(row=2, column=0, sticky=tk.W)
+        self.label = ctk.CTkLabel(self, text="Choose a service to log in")
+        self.label.pack(pady=20)
 
-        ttk.Button(frame, text="Next", command=self.show_url_screen).grid(row=3, column=0, sticky=tk.W)
+        self.notion_button = ctk.CTkButton(self, text="Login with Notion", command=self.notion_login, width=200, height=40, corner_radius=10)
+        self.notion_button.pack(pady=20)
 
-    def show_url_screen(self):
-        for widget in self.root.winfo_children():
-            widget.destroy()
-        URLScreen(self.root, self.source_var.get())
+        self.confluence_button = ctk.CTkButton(self, text="Login with Confluence", command=self.confluence_login, width=200, height=40, corner_radius=10)
+        self.confluence_button.pack(pady=20)
+
+    def notion_login(self):
+        messagebox.showinfo("Notion Login", "Redirecting to Notion login...")
+        # Replace this with actual login logic for Notion
+        self.show_site_selection_screen()
+
+    def confluence_login(self):
+        messagebox.showinfo("Confluence Login", "Redirecting to Confluence login...")
+        # Replace this with actual login logic for Confluence
+        self.show_site_selection_screen()
+
+    def show_site_selection_screen(self):
+        self.site_selection_screen = SiteSelectionScreen(self)
+        self.site_selection_screen.pack(fill="both", expand=True)
+        self.pack_forget()
+
+if __name__ == "__main__":
+    app = MainScreen()
+    app.mainloop()

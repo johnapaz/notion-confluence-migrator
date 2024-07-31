@@ -1,65 +1,62 @@
-import tkinter as tk
-from tkinter import ttk
-from ..auth import authenticate_notion, authenticate_confluence
+import customtkinter as ctk
+from PIL import Image, ImageTk
+import os
 
 class LoginScreen:
-    def __init__(self, root, source, url):
+    def __init__(self, root):
         self.root = root
-        self.source = source
-        self.url = url
         self.root.geometry("600x400")
-        self.create_login_screen()
+        self.root.title("Login Screen")
 
-    def create_login_screen(self):
-        frame = ttk.Frame(self.root, padding="10")
-        frame.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
+        self.setup_ui()
 
-        ttk.Label(frame, text="Login").grid(row=0, column=0, sticky=tk.W)
-        ttk.Label(frame, text="Username:").grid(row=1, column=0, sticky=tk.W)
-        self.username_entry = ttk.Entry(frame, width=50)
-        self.username_entry.grid(row=2, column=0, sticky=(tk.W, tk.E))
+    def setup_ui(self):
+        # Load Notion and Confluence logos
+        notion_logo_path = os.path.join('assets', 'notion.png')
+        confluence_logo_path = os.path.join('assets', 'confluence.png')
 
-        ttk.Label(frame, text="API Token:").grid(row=3, column=0, sticky=tk.W)
-        self.token_entry = ttk.Entry(frame, width=50, show="*")
-        self.token_entry.grid(row=4, column=0, sticky=(tk.W, tk.E))
+        notion_logo = Image.open(notion_logo_path)
+        confluence_logo = Image.open(confluence_logo_path)
 
-        ttk.Button(frame, text="Login", command=self.authenticate).grid(row=5, column=0, sticky=tk.W)
-        ttk.Button(frame, text="Back", command=self.go_back).grid(row=6, column=0, sticky=tk.W)
+        # Convert logos to PhotoImage
+        notion_logo_tk = ImageTk.PhotoImage(notion_logo)
+        confluence_logo_tk = ImageTk.PhotoImage(confluence_logo)
 
-    def authenticate(self):
-        try:
-            username = self.username_entry.get()
-            token = self.token_entry.get()
-        except tk.TclError as e:
-            tk.messagebox.showerror("Error", f"Error retrieving input values: {e}")
-            return
+        # Create Notion login button
+        self.notion_button = ctk.CTkButton(
+            self.root,
+            image=notion_logo_tk,
+            text="Notion",
+            corner_radius=10,
+            width=200,
+            height=200,
+            command=self.notion_login
+        )
+        self.notion_button.image = notion_logo_tk  # Keep a reference to avoid garbage collection
+        self.notion_button.place(relx=0.25, rely=0.5, anchor='center')
 
-        if not username or not token:
-            tk.messagebox.showerror("Error", "Username and API Token cannot be empty")
-            return
+        # Create Confluence login button
+        self.confluence_button = ctk.CTkButton(
+            self.root,
+            image=confluence_logo_tk,
+            text="Confluence",
+            corner_radius=10,
+            width=200,
+            height=200,
+            command=self.confluence_login
+        )
+        self.confluence_button.image = confluence_logo_tk  # Keep a reference to avoid garbage collection
+        self.confluence_button.place(relx=0.75, rely=0.5, anchor='center')
 
-        try:
-            if self.source == "Notion":
-                if authenticate_notion(token):
-                    self.show_content_selection(username, token)
-                else:
-                    tk.messagebox.showerror("Error", "Failed to authenticate with Notion")
-            elif self.source == "Confluence":
-                if authenticate_confluence(username, token):
-                    self.show_content_selection(username, token)
-                else:
-                    tk.messagebox.showerror("Error", "Failed to authenticate with Confluence")
-        except Exception as e:
-            tk.messagebox.showerror("Error", f"Authentication error: {e}")
+    def notion_login(self):
+        # Implement Notion login logic
+        pass
 
-    def show_content_selection(self, username, token):
-        for widget in self.root.winfo_children():
-            widget.destroy()
-        from .content_selection_screen import ContentSelectionScreen
-        ContentSelectionScreen(self.root, self.source, self.url, username, token)
+    def confluence_login(self):
+        # Implement Confluence login logic
+        pass
 
-    def go_back(self):
-        for widget in self.root.winfo_children():
-            widget.destroy()
-        from .url_screen import URLScreen
-        URLScreen(self.root, self.source)
+if __name__ == "__main__":
+    root = ctk.CTk()
+    app = LoginScreen(root)
+    root.mainloop()

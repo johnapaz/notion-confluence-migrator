@@ -37,5 +37,5 @@ class ContentSelectionScreen:
     def go_back(self):
         for widget in self.root.winfo_children():
             widget.destroy()
-        from .login_screen import LoginScreen
+        from .login_screen_old import LoginScreen
         LoginScreen(self.root, self.source, self.url)

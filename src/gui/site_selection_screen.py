@@ -1,69 +1,35 @@
-import tkinter as tk
-from tkinter import ttk, messagebox
-import requests
-from .custom_dialog import CustomDialog
+import customtkinter as ctk
+from tkinter import Listbox, END
 
-class SiteSelectionScreen:
-    def __init__(self, root, source, url, username, token, selected_content, access_token):
-        self.root = root
-        self.source = source
-        self.url = url
-        self.username = username
-        self.token = token
-        self.selected_content = selected_content
-        self.access_token = access_token
+class SiteSelectionScreen(ctk.CTkFrame):
+    def __init__(self, master):
+        super().__init__(master)
+        self.master = master
 
-        self.create_site_selection_screen()
+        self.label = ctk.CTkLabel(self, text="Select a Confluence Site")
+        self.label.pack(pady=10)
 
-    def create_site_selection_screen(self):
-        self.root.geometry("600x400")
-        frame = ttk.Frame(self.root, padding="10")
-        frame.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
+        # Use a standard Listbox
+        self.site_listbox = Listbox(self)
+        self.site_listbox.pack(pady=10, padx=20, fill="both", expand=True)
 
-        ttk.Label(frame, text="Select a Confluence Site").grid(row=0, column=0, sticky=tk.W)
+        self.confirm_button = ctk.CTkButton(self, text="Confirm", command=self.confirm_selection)
+        self.confirm_button.pack(pady=10)
 
-        self.site_var = tk.StringVar()
-        sites = self.fetch_sites()
-        site_options = [site['name'] for site in sites]
-        
-        if site_options:
-            self.site_menu = ttk.OptionMenu(frame, self.site_var, site_options[0], *site_options)
-            self.site_menu.grid(row=1, column=0, sticky=tk.W)
-            ttk.Button(frame, text="Next", command=self.confirm_selection).grid(row=2, column=0, sticky=tk.W)
-        else:
-            ttk.Label(frame, text="No sites available").grid(row=1, column=0, sticky=tk.W)
-        
-        ttk.Button(frame, text="Back", command=self.go_back).grid(row=3, column=0, sticky=tk.W)
+        self.pack(fill="both", expand=True)
 
-    def fetch_sites(self):
-        url = "https://api.atlassian.com/oauth/token/accessible-resources"
-        headers = {
-            "Authorization": f"Bearer {self.access_token}"
-        }
-        try:
-            response = requests.get(url, headers=headers)
-            response.raise_for_status()  # Raise an HTTPError for bad responses
-            return response.json()
-        except requests.exceptions.HTTPError as http_err:
-            CustomDialog(self.root, "HTTP Error", f"HTTP error occurred: {http_err}")
-        except Exception as err:
-            CustomDialog(self.root, "Error", f"An error occurred: {err}")
-        return []
+        # Example sites, replace with actual data
+        sites = ["Site 1", "Site 2", "Site 3"]
+        for site in sites:
+            self.site_listbox.insert(END, site)
 
     def confirm_selection(self):
-        selected_site_name = self.site_var.get()
-        selected_site = next(site for site in self.fetch_sites() if site['name'] == selected_site_name)
-        selected_site_id = selected_site['id']
-        self.show_space_selection_screen(selected_site_id)
+        selected_site = self.site_listbox.get(self.site_listbox.curselection())
+        print(f"Selected site: {selected_site}")
+        self.show_space_selection_screen(selected_site)
 
-    def show_space_selection_screen(self, selected_site_id):
-        for widget in self.root.winfo_children():
-            widget.destroy()
-        from .space_selection_screen import SpaceSelectionScreen
-        SpaceSelectionScreen(self.root, self.source, selected_site_id, self.username, self.token, self.selected_content, self.access_token)
-
-    def go_back(self):
-        for widget in self.root.winfo_children():
-            widget.destroy()
-        from .destination_login_screen import DestinationLoginScreen
-        DestinationLoginScreen(self.root, self.source, self.url, self.username, self.token, self.selected_content)
+    def show_space_selection_screen(self, selected_site):
+        from src.gui.space_selection_screen import SpaceSelectionScreen
+        self.space_selection_screen = SpaceSelectionScreen(self.master, selected_site)
+        self.space_selection_screen.pack(fill="both", expand=True)
+        self.pack_forget()

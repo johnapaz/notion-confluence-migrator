@@ -26,7 +26,7 @@ class URLScreen:
             return
         for widget in self.root.winfo_children():
             widget.destroy()
-        from .login_screen import LoginScreen
+        from .login_screen_old import LoginScreen
         LoginScreen(self.root, self.source, url)
 
     def go_back(self):
