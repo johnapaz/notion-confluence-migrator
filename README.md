@@ -59,12 +59,23 @@ In order to use this app you'll need to have the following:
     - Select OAuth 2.0 as the authentication method.
     - Fill in the required fields such as App Name and App Description.
 3. Set Up OAuth 2.0:
-    - After creating the app, navigate to the Authorization tab.
+    - After creating the app, navigate to the Permissions tab.
     - Add the following scopes:
         ```
-        read:me, write:confluence-space, read:confluence-content.permission, write:confluence-props, read:confluence-props, search:confluence, read:confluence-space.summary, write:confluence-content, read:confluence-content.
+        # User Identity API
+        read:me,
+
+        # Confluence API
+        write:confluence-content
+        write:confluence-space
+        read:confluence-props
+        write:confluence-props
+        read:confluence-content.all
+        read:confluence-space.summary
+        search:confluence
+        read:confluence-content.permission
         ```
-    - Add `http://localhost:8000/callback` as the Redirect URI.
+    - Navigate to the Authorization tab, and add `http://localhost:8000/callback` as the Redirect URI.
     - Save the changes.
 
     4. Get Your Client ID and Client Secret: Go to the Credentials tab. Copy the `Client ID` and `Client Secret`. These will be used in the `.env` file.
