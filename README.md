@@ -36,31 +36,32 @@ A Python application for migrating content from Notion to Confluence Cloud with 
 - `python-dotenv` for handling environment variables
 
 ## Prerequisites
-In order to use this app you'll need to have already:
-1. Create a Notion Integration app
-2. Create a Confluence app
+In order to use this app you'll need to have the following:
+1. A Notion Integration app.
+2. A Confluence app.
+3. Your Confluence App ID (CLIENT_ID) and Secret (CLIENT_SECRET)
 
 ### Creating a Notion Integration
-1. Sign in to Notion: Go to Notion and sign in with your account.
+1. Navigate to Notion and sign in with your account.
 2. Create an Integration:
-    - Navigate to Notion Integrations.
-    - Click on + New Integration. 
+    - Navigate to [Notion Integrations](https://www.notion.so/profile/integrations).
+    - Click on + New Integration.
     - Fill in the required fields such as Name and Associated Workspace.
     - Select the necessary permissions for the integration.
     - Click Submit to create the integration.
 3. Get Your Integration Token: After creating the integration, copy the Integration Token provided. This will be used in the `.env` file.
 
 ### Creating a Confluence App
-1. Sign in to Atlassian: Go to Atlassian Developer and sign in with your Atlassian account.
-2. Create a New App: 
-    - Navigate to the Developer Console.
+1. Navigate to Atlassian Developer and sign in with your Atlassian account.
+2. Create a New App:
+    - Navigate to the [Developer Console](https://developer.atlassian.com/console/myapps/).
     - Click on Create New App.
     - Select OAuth 2.0 as the authentication method.
     - Fill in the required fields such as App Name and App Description.
 3. Set Up OAuth 2.0:
     - After creating the app, navigate to the Authorization tab.
-    - Add the following scopes: 
-        ``` 
+    - Add the following scopes:
+        ```
         read:me, write:confluence-space, read:confluence-content.permission, write:confluence-props, read:confluence-props, search:confluence, read:confluence-space.summary, write:confluence-content, read:confluence-content.
         ```
     - Add `http://localhost:8000/callback` as the Redirect URI.
@@ -99,7 +100,7 @@ notion-confluence/
 1. Clone the repository:
    ```bash
    git clone https://github.com/johnapaz/notion-confluence.git
-   cd notion-confluence 
+   cd notion-confluence
    ```
 2. Create a virtual environment:
     ```bash
